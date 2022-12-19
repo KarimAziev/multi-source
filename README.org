@@ -1,0 +1,60 @@
+* multi-source
+
+Combine multiple minibuffer sources into a dynamic command.
+
+** Installation
+
+*** Manual
+
+Download the source code and put it wherever you like and add the directory to the load path:
+
+#+begin_src elisp :eval no
+
+(add-to-list 'load-path "/path/to/multi-source")
+
+(require 'multi-source)
+
+#+end_src
+
+*** With use-package and straight
+
+#+begin_src elisp :eval no
+
+(use-package multi-source
+  :straight (multi-source
+             :repo "KarimAziev/multi-source"
+             :type git
+             :host github))
+
+#+end_src
+** Usage
+
+Example with 3 switchable sources, the first will be called as default backend and other can be accessed with commands.
+
+#+begin_src emacs-lisp
+
+(multi-source-read
+   '(("Default" completing-read "Predefined files" ("/tmp/" ".emacs.d/init.el"))
+     ("Alternative 1" read-directory-name "Other")
+     ("Other" read-string "")))
+
+#+begin_src emacs-lisp
+#+end_src
+
+
+- ~multi-source-select-prev~ (default bound to =C-<=)
+- ~multi-source-select-next~ (default bound to =C->=)
+- ~multi-source-read-source~ (default bound to =C-.=)
+
+  You can change this keybindings by modifying ~multi-source-minibuffer-map~, e.g.
+
+#+begin_src emacs-lisp
+(define-key multi-source-minibuffer-map (kbd "C-{") 'multi-source-select-next)
+(define-key multi-source-minibuffer-map (kbd "C-}") 'multi-source-select-prev)
+(define-key multi-source-minibuffer-map (kbd "C-.") 'multi-source-read-source)
+#+end_src
+
+** Customization
+
+*** ~multi-source-restore-last-input~
+Whether to insert last typed source input.
