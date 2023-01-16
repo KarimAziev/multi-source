@@ -120,11 +120,16 @@
                 (extra-args (when (listp rest)
                               (cdr rest))))
            (push label labels)
-           (push fn fns)
+           (push (if (or (functionp fn)
+                         (symbolp fn))
+                     fn
+                   `(lambda () ,fn))
+                 fns)
            (push extra-args args)))))
     (list (reverse fns)
           (reverse labels)
           (reverse args))))
+
 
 (defun multi-source-read (sources)
   "Combine minibuffer SOURCES into a command with several alternatives.
