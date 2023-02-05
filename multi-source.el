@@ -80,7 +80,8 @@
         ((< step 0)
          (if (or (<= 0 (+ step current-index)))
              (+ step current-index)
-           (1- (length switch-list))))))
+           (1- (length switch-list))))
+        (t current-index)))
 
 (defun multi-source-read-source ()
   "Throw to the catch tag ='next with -1."
