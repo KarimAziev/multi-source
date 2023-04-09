@@ -29,7 +29,7 @@
 
 ;;; Code:
 
-(defcustom multi-source-restore-last-input nil
+(defcustom multi-source-restore-last-input t
   "Whether to insert last typed source input."
   :group 'multi-source
   :type 'boolean)
@@ -192,8 +192,8 @@ Allowed forms for SOURCES are
       (setq multi-source--current-index
             (multi-source-switcher curr
                                    multi-source--current-index
-                                   fns))
-      (setq multi-source-last-input nil))
+                                   fns)))
+    (setq multi-source-last-input nil)
     (setq multi-source--sources-list nil)
     curr))
 
