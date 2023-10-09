@@ -7,6 +7,7 @@
 ;; Version: 0.1.0
 ;; Keywords: lisp abbrev
 ;; Package-Requires: ((emacs "25.1"))
+;; SPDX-License-Identifier: GPL-3.0-or-later
 
 ;; This file is NOT part of GNU Emacs.
 
@@ -36,9 +37,9 @@
 
 (defvar multi-source-minibuffer-map
   (let ((map (make-sparse-keymap)))
-    (define-key map (kbd "C->") 'multi-source-select-next)
-    (define-key map (kbd "C-<") 'multi-source-select-prev)
-    (define-key map (kbd "C-.") 'multi-source-read-source)
+    (define-key map (kbd "C->") #'multi-source-select-next)
+    (define-key map (kbd "C-<") #'multi-source-select-prev)
+    (define-key map (kbd "C-.") #'multi-source-read-source)
     map)
   "Keymap to use in minibuffer.")
 
@@ -172,7 +173,8 @@ Allowed forms for SOURCES are
                           (when (minibuffer-window-active-p
                                  (selected-window))
                             (when (and multi-source-restore-last-input
-                                       multi-source-last-input)
+                                       multi-source-last-input
+                                       (string-empty-p (minibuffer-contents-no-properties)))
                               (insert
                                multi-source-last-input))
                             (add-hook
