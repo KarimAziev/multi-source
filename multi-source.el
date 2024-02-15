@@ -85,7 +85,7 @@
         (t current-index)))
 
 (defun multi-source-read-source ()
-  "Throw to the catch tag ='next with -1."
+  "Select a source by label and calculate index offset."
   (interactive)
   (let* ((source-label
           (completing-read "Source: " (nth 1 multi-source--sources-list)))
