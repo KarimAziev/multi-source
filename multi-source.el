@@ -1,4 +1,4 @@
-;;; multi-source.el --- Configure multi source -*- lexical-binding: t; -*-
+;;; multi-source.el --- Combine multiple minibuffer sources -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2022 Karim Aziiev <karim.aziiev@gmail.com>
 
@@ -26,7 +26,10 @@
 
 ;;; Commentary:
 
-;; Configure multi source
+;; This package provides a way to combine multiple minibuffer sources into a
+;; single command, allowing users to switch between different input methods
+;; dynamically. It supports various forms of sources, including functions,
+;; plists, and alists, and offers keybindings for navigating between them.
 
 ;;; Code:
 
